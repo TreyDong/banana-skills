@@ -12,7 +12,7 @@ Automatically discover and recommend relevant Claude skills when you encounter t
 
 **Installation:**
 ```bash
-npx skills add your-github-username/banana-skills/skills/banana-skill-finder
+npx skills add TreyDong/banana-skills/skills/banana-skill-finder
 ```
 
 **Features:**
@@ -34,7 +34,7 @@ Sync local Markdown files to Notion with full formatting support and directory s
 
 **Installation:**
 ```bash
-npx skills add your-github-username/banana-skills/skills/banana-sync-to-notion
+npx skills add TreyDong/banana-skills/skills/banana-sync-to-notion
 ```
 
 **Features:**
@@ -54,13 +54,13 @@ npx skills add your-github-username/banana-skills/skills/banana-sync-to-notion
 ### Install a Single Skill
 
 ```bash
-npx skills add your-github-username/banana-skills/skills/banana-skill-finder
+npx skills add TreyDong/banana-skills/skills/banana-skill-finder
 ```
 
 ### Install All Skills
 
 ```bash
-npx skills add your-github-username/banana-skills
+npx skills add TreyDong/banana-skills
 ```
 
 ## 📖 Documentation

@@ -14,7 +14,7 @@ Claude Code 和其他 AI 编码助手的技能集合。
 
 **安装：**
 ```bash
-npx skills add your-github-username/banana-skills/skills/banana-skill-finder
+npx skills add TreyDong/banana-skills/skills/banana-skill-finder
 ```
 
 **功能特性：**
@@ -36,7 +36,7 @@ npx skills add your-github-username/banana-skills/skills/banana-skill-finder
 
 **安装：**
 ```bash
-npx skills add your-github-username/banana-skills/skills/banana-sync-to-notion
+npx skills add TreyDong/banana-skills/skills/banana-sync-to-notion
 ```
 
 **功能特性：**
@@ -56,13 +56,13 @@ npx skills add your-github-username/banana-skills/skills/banana-sync-to-notion
 ### 安装单个技能
 
 ```bash
-npx skills add your-github-username/banana-skills/skills/banana-skill-finder
+npx skills add TreyDong/banana-skills/skills/banana-skill-finder
 ```
 
 ### 安装所有技能
 
 ```bash
-npx skills add your-github-username/banana-skills
+npx skills add TreyDong/banana-skills
 ```
 
 ## 📖 文档
