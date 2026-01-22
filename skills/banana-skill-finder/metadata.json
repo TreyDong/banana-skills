@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "organization": "Banana Skills",
+  "date": "January 2026",
+  "abstract": "Automatically discover and recommend relevant Claude skills when users encounter tasks that could benefit from specialized capabilities. Features three-tier search strategy (SkillsMP API, skills.sh leaderboard, GitHub API) with smart relevance ranking. Proactively triggers when users work with specific file formats, describe repetitive tasks, ask for tools, or struggle with domain-specific work. Recommends 1-3 most relevant skills with one-command installation via npx skills add.",
+  "references": [
+    "https://skillsmp.com",
+    "https://skills.sh",
+    "https://github.com/anthropics/skills"
+  ]
+}

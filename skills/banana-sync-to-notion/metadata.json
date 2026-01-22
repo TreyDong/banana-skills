@@ -1,0 +1,11 @@
+{
+  "version": "2.1.0",
+  "organization": "Banana Skills",
+  "date": "January 2026",
+  "abstract": "Sync local Markdown files to Notion with full formatting support and directory structure preservation. Features complete Markdown formatting (bold, italic, code, links, lists, tables, callouts), automatic emoji icons based on filenames, duplicate detection for incremental syncs, smart chunking for large files, and relative link conversion to Notion page links. Includes clean and re-sync commands for easy content management.",
+  "references": [
+    "https://www.notion.so",
+    "https://developers.notion.com",
+    "https://www.npmjs.com/package/@notionhq/client"
+  ]
+}
