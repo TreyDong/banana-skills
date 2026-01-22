@@ -1,0 +1,14 @@
+{
+  "name": "banana-sync-to-notion",
+  "version": "2.1.0",
+  "description": "Sync local Markdown files to Notion with full formatting support",
+  "scripts": {
+    "sync:notion": "node scripts/sync-notion.js",
+    "clean:notion": "node scripts/clean-notion.js",
+    "resync:notion": "node scripts/clean-notion.js && node scripts/sync-notion.js"
+  },
+  "dependencies": {
+    "@notionhq/client": "^2.2.0",
+    "dotenv": "^16.0.0"
+  }
+}
