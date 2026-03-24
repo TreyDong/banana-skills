@@ -49,6 +49,26 @@ npx skills add TreyDong/banana-skills/skills/banana-sync-to-notion
 - Uploading files to Notion
 - Migrating documentation to Notion
 
+### 3. claude-codex-import
+
+Import your local Claude Code and Codex conversation history into OpenClaw's memory system.
+
+**Installation:**
+```bash
+npx skills add TreyDong/banana-skills/skills/claude-codex-import
+```
+
+**Features:**
+- Parses Claude Code (`~/.claude/transcripts/`) and Codex (`~/.codex/sessions/`) JSONL session files
+- Filters system noise (environment context) automatically
+- Outputs formatted markdown session archives + daily memory candidates
+- Supports `--dry-run`, `--source`, `--since` for flexible imports
+
+**Triggers automatically when:**
+- Asking to import, migrate, or load Claude Code/Codex chat history
+- Wanting to rebuild memory from past coding agent sessions
+- Publishing a skill based on previous agent sessions
+
 ## 🚀 Quick Start
 
 ### Install a Single Skill
@@ -69,6 +89,7 @@ Each skill includes detailed documentation in its `SKILL.md` file:
 
 - **banana-skill-finder**: [skills/banana-skill-finder/SKILL.md](skills/banana-skill-finder/SKILL.md)
 - **banana-sync-to-notion**: [skills/banana-sync-to-notion/SKILL.md](skills/banana-sync-to-notion/SKILL.md)
+- **claude-codex-import**: [skills/claude-codex-import/SKILL.md](skills/claude-codex-import/SKILL.md)
 
 ## 🛠️ Setup Requirements
 
