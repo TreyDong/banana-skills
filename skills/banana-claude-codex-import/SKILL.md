@@ -1,57 +1,108 @@
 ---
 name: banana-claude-codex-import
 description: >
-  Import, migrate, or load local Claude Code or Codex conversation history, chat logs, or session archives into memory.
-  Triggers when: user asks to import Claude/Codex conversations, migrate chat history, load past coding agent sessions,
-  consolidate previous Claude/Codex work, analyze or review past coding sessions, or rebuild memory from coding agent logs.
-  Does NOT trigger for: ChatGPT/Claude web app exports (use banana-chatgpt-import for those).
+  Import local Claude Code or Codex conversation history into OpenClaw memory. Triggers when:
+  user asks to "导入"Claude/Codex conversations or chat logs, migrate or consolidate past coding agent sessions,
+  load previous Claude Code or Codex work into memory, analyze or review past coding sessions,
+  or rebuild memory from local coding agent session files.
+  Also triggers proactively when ~/.claude/projects/ or ~/.codex/sessions/ directories are detected.
+  Does NOT trigger for: ChatGPT/Claude web app exports (→ banana-chatgpt-import).
 ---
 
 # banana-claude-codex-import
 
-When a user wants to bring their local Claude Code or Codex conversation history into OpenClaw memory.
+Import local Claude Code (`~/.claude/`) and Codex (`~/.codex/`) conversation history into OpenClaw's memory system, making past coding work queryable and part of long-term memory.
 
-## Trigger recognition
+## When to use this skill
 
-The user wants to:
-- "导入 Claude Code / Codex 的对话记录"
-- "migrate my Claude Code sessions"
-- "把之前的 coding agent 对话历史导入 memory"
-- " Consolidate past Codex work into memory"
-- "从 Claude Code 恢复记忆"
-- "Analyze my previous coding sessions"
-- 主动检测到用户本地有 `~/.claude/projects/` 或 `~/.codex/sessions/` 目录
+Use this skill when the user:
+- Wants to import, migrate, or consolidate Claude Code or Codex sessions
+- Asks to "导入" or "migrate" past coding agent conversations
+- Wants to make past Claude Code / Codex work searchable in memory
+- Needs to rebuild memory from previous coding agent sessions
+- Mentions `~/.claude/` or `~/.codex/` session files
+- Is reviewing past work and wants to extract key decisions/patterns into memory
+
+## What this skill does
+
+1. **Detect** whether Claude Code and/or Codex data exists locally
+2. **Preview** with `--dry-run` to show session count, date range, and sample content
+3. **Import** all sessions to `logs/message-archive-raw/`
+4. **Generate** memory candidates for distillation into `MEMORY.md`
 
 ## Workflow
 
-1. **Verify data exists** — confirm `~/.claude/projects/` or `~/.codex/sessions/` exist on the machine
-2. **Run import script** — execute `import_conversations.py` with `--dry-run` first to preview results
-3. **Check coverage** — verify session counts, date range, and content quality before full import
-4. **Run full import** — remove `--dry-run` flag to write archives and memory candidates
-5. **Distill into MEMORY.md** — read the generated `memory/YYYY-MM-DD_import_candidates.md`, extract key facts/decisions into long-term memory
+### Step 1: Dry-run first
 
-## Key decisions to capture for MEMORY.md
+Always run with `--dry-run` first to verify data coverage:
 
-After import, distill these from the session archives:
-- What projects / topics the user worked on
-- Key technical decisions made (tools chosen, architectures chosen, what failed)
-- Recurring workflows or patterns
-- Any personal preferences or working style revealed in the conversations
+```bash
+python3 ~/.openclaw/skills/banana-claude-codex-import/scripts/import_conversations.py --dry-run
+```
 
-## CLI
+Check:
+- Session count (aim for 50+ for Claude Code, 50+ for Codex)
+- Date range
+- Whether content looks real (not just noise/environment context)
+
+If results look good, proceed.
+
+### Step 2: Full import
 
 ```bash
 python3 ~/.openclaw/skills/banana-claude-codex-import/scripts/import_conversations.py
-
-# Preview only
-python3 ~/.openclaw/skills/banana-claude-codex-import/scripts/import_conversations.py --dry-run
-
-# Specific source and date filter
-python3 ~/.openclaw/skills/banana-claude-codex-import/scripts/import_conversations.py \
-  --source claude_code --since 2026-01-01
 ```
 
-## Output locations
-
+This writes:
 - Session archives → `logs/message-archive-raw/{claude_code,codex}/`
-- Memory candidates → `memory/YYYY-MM-DD_import_candidates.md`
+- Memory draft → `memory/YYYY-MM-DD_import_candidates.md`
+
+### Step 3: Distill into MEMORY.md
+
+Read `memory/YYYY-MM-DD_import_candidates.md` and extract high-value content into `MEMORY.md`:
+
+```markdown
+## Claude Code / Codex 导入记忆（YYYY-MM）
+
+> N sessions imported from `logs/message-archive-raw/`
+
+### 技术决策
+- [key decision 1]
+- [key decision 2]
+
+### 项目 / 主题
+- [project 1]: [what was done]
+- [project 2]: [what was done]
+
+### 工具 & 工作流
+- [tool/workflow pattern observed across sessions]
+```
+
+## Source data
+
+| Source | Path | Format |
+|--------|------|--------|
+| Claude Code sessions | `~/.claude/projects/*.jsonl` | JSONL, user/assistant/tool_result entries |
+| Claude Code index | `~/.claude/history.jsonl` | sessionId → metadata |
+| Codex sessions | `~/.codex/sessions/**/rollout-*.jsonl` | JSONL, session_meta/response_item entries |
+
+## CLI options
+
+```bash
+--dry-run              # Preview only, no files written
+--source both          # Import both Claude Code and Codex (default)
+--source claude_code   # Claude Code only
+--source codex         # Codex only
+--since YYYY-MM-DD     # Only sessions on or after date
+```
+
+## What makes a good memory distillation
+
+After import, the most valuable things to capture in `MEMORY.md`:
+
+1. **Technical decisions** — architecture choices, tools selected/rejected, what failed
+2. **Recurring workflows** — patterns in how the user works with coding agents
+3. **Project context** — what each project is about, key milestones
+4. **Personal preferences** — working style, communication patterns, explicit preferences stated
+
+Avoid: verbatim copying of conversations. Capture the distilled meaning.
