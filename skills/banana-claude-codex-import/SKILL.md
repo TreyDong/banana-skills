@@ -1,5 +1,5 @@
 ---
-name: claude-codex-import
+name: banana-claude-codex-import
 description: Import local Claude Code and Codex conversation history into OpenClaw memory. Triggers when: user asks to import, migrate, or load Claude Code/Codex 聊天记录/对话历史/conversation history/session archive into memory; user mentions their local Claude Code or Codex transcripts, history, or session files; user wants to rebuild memory from past coding agent sessions, consolidate past Claude/Codex work, analyze or audit past coding sessions, or prepare to publish a skill based on previous agent sessions.
 ---
 
