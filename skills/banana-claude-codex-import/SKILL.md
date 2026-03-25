@@ -1,78 +1,57 @@
 ---
 name: banana-claude-codex-import
-description: "Import local Claude Code and Codex conversation history into OpenClaw memory. Triggers when: user asks to import, migrate, or load Claude Code/Codex 聊天记录/对话历史/conversation history/session archive into memory; user mentions their local Claude Code or Codex transcripts, history, or session files; user wants to rebuild memory from past coding agent sessions, consolidate past Claude/Codex work, analyze or audit past coding sessions, or prepare to publish a skill based on previous agent sessions."
+description: >
+  Import, migrate, or load local Claude Code or Codex conversation history, chat logs, or session archives into memory.
+  Triggers when: user asks to import Claude/Codex conversations, migrate chat history, load past coding agent sessions,
+  consolidate previous Claude/Codex work, analyze or review past coding sessions, or rebuild memory from coding agent logs.
+  Does NOT trigger for: ChatGPT/Claude web app exports (use banana-chatgpt-import for those).
 ---
 
 # banana-claude-codex-import
 
-Import Claude Code (`~/.claude/`) and Codex (`~/.codex/sessions/`) conversation history into OpenClaw's memory system.
+When a user wants to bring their local Claude Code or Codex conversation history into OpenClaw memory.
 
-## Data sources
+## Trigger recognition
 
-**Claude Code** (`~/.claude/`):
-- `projects/` — session files (`{sessionId}.jsonl`), the official storage location
-- `history.jsonl` — session index (sessionId → project path, timestamp, first message)
+The user wants to:
+- "导入 Claude Code / Codex 的对话记录"
+- "migrate my Claude Code sessions"
+- "把之前的 coding agent 对话历史导入 memory"
+- " Consolidate past Codex work into memory"
+- "从 Claude Code 恢复记忆"
+- "Analyze my previous coding sessions"
+- 主动检测到用户本地有 `~/.claude/projects/` 或 `~/.codex/sessions/` 目录
 
-**Codex** (`~/.codex/sessions/`):
-- `**/rollout-*.jsonl` — per-session JSONL files
+## Workflow
 
-`<environment_context>` noise entries are automatically filtered.
+1. **Verify data exists** — confirm `~/.claude/projects/` or `~/.codex/sessions/` exist on the machine
+2. **Run import script** — execute `import_conversations.py` with `--dry-run` first to preview results
+3. **Check coverage** — verify session counts, date range, and content quality before full import
+4. **Run full import** — remove `--dry-run` flag to write archives and memory candidates
+5. **Distill into MEMORY.md** — read the generated `memory/YYYY-MM-DD_import_candidates.md`, extract key facts/decisions into long-term memory
 
-## Usage
+## Key decisions to capture for MEMORY.md
+
+After import, distill these from the session archives:
+- What projects / topics the user worked on
+- Key technical decisions made (tools chosen, architectures chosen, what failed)
+- Recurring workflows or patterns
+- Any personal preferences or working style revealed in the conversations
+
+## CLI
 
 ```bash
 python3 ~/.openclaw/skills/banana-claude-codex-import/scripts/import_conversations.py
 
-# Preview only — don't write files
+# Preview only
 python3 ~/.openclaw/skills/banana-claude-codex-import/scripts/import_conversations.py --dry-run
 
-# Only Codex, sessions from 2026 onward
+# Specific source and date filter
 python3 ~/.openclaw/skills/banana-claude-codex-import/scripts/import_conversations.py \
-  --source codex --since 2026-01-01
+  --source claude_code --since 2026-01-01
 ```
 
-### CLI options
+## Output locations
 
-| Flag | Description |
-|------|-------------|
-| `--dry-run` | Print summary without writing any files |
-| `--source {both,claude_code,codex}` | Which source to import (default: both) |
-| `--since YYYY-MM-DD` | Only import sessions on or after this date |
-
-## Output
-
-```
-logs/message-archive-raw/claude_code/{session_id}.md   ← one file per session
-logs/message-archive-raw/codex/{session_id}.md
-memory/YYYY-MM-DD_import_candidates.md                 ← draft for MEMORY.md
-```
-
-Each session archive contains formatted markdown with user/assistant/tool messages and timestamps.
-
-## Merging into MEMORY.md
-
-After import, read `memory/YYYY-MM-DD_import_candidates.md`, then distill the most valuable facts and decisions into `MEMORY.md`:
-
-```markdown
-## Claude Code / Codex 导入记忆（YYYY-MM）
-
-> 来源：banana-claude-codex-import | N 个会话归档于 `logs/message-archive-raw/`
-
-### 项目 / 主题
-- **Context**: ...
-- **Key decisions**: ...
-```
-
-## Requirements
-
-- Python 3.8+
-- `~/.claude/projects/` and/or `~/.codex/sessions/` directories
-- Write access to `~/.openclaw/workspace/logs/` and `~/.openclaw/workspace/memory/`
-
-## Maintenance
-
-Claude Code session format: each `.jsonl` entry has `type` = `user`/`assistant`/`tool_result`.
-- User content: `message.content` (string or list of blocks)
-- Assistant content: `message.content` list with blocks of type `text`/`thinking`/`tool_use`
-
-If the JSONL format changes, update `scripts/import_conversations.py` — look for `extract_content_blocks()` and the user/assistant parsing in `parse_claude_code_transcripts()`. Run with `--dry-run` first to verify.
+- Session archives → `logs/message-archive-raw/{claude_code,codex}/`
+- Memory candidates → `memory/YYYY-MM-DD_import_candidates.md`
