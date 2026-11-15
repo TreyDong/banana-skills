@@ -72,6 +72,26 @@ npx skills add TreyDong/banana-skills/skills/banana-design
 - 做幻灯片、长文报告、数据大屏等制品
 - 评审界面、给 AI 派 UI 任务之前
 
+### 3. banana-claude-codex-import
+
+把本机的 Claude Code 与 Codex 对话记录导入 OpenClaw 的记忆系统。
+
+**安装：**
+```bash
+npx skills add TreyDong/banana-skills/skills/banana-claude-codex-import
+```
+
+**功能特性：**
+- 解析 `~/.claude/projects/` 与 `~/.codex/sessions/` 下的 JSONL 会话文件
+- 自动过滤系统噪音与环境上下文
+- 输出格式化的 Markdown 会话存档与每日记忆候选
+- 支持 `--dry-run`、`--source`、`--since` 控制范围
+
+**触发时机：**
+- 导入、迁移或加载 Claude Code / Codex 的对话记录
+- 把过去的编码 agent 会话重建为记忆
+- 复盘或审阅过往会话
+
 ## 🚀 快速开始
 
 ### 安装单个技能
@@ -92,6 +112,7 @@ npx skills add TreyDong/banana-skills
 
 - **banana-skill-finder**: [skills/banana-skill-finder/SKILL.md](skills/banana-skill-finder/SKILL.md)
 - **banana-sync-to-notion**: [skills/banana-sync-to-notion/SKILL.md](skills/banana-sync-to-notion/SKILL.md)
+- **banana-claude-codex-import**: [skills/banana-claude-codex-import/SKILL.md](skills/banana-claude-codex-import/SKILL.md)
 - **banana-design**（中文）: [skills/banana-design/SKILL.md](skills/banana-design/SKILL.md)
 
 ## 🛠️ 配置要求

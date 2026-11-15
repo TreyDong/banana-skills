@@ -6,7 +6,7 @@ description: >
   load previous Claude Code or Codex work into memory, analyze or review past coding sessions,
   or rebuild memory from local coding agent session files.
   Also triggers proactively when ~/.claude/projects/ or ~/.codex/sessions/ directories are detected.
-  Does NOT trigger for: ChatGPT/Claude web app exports (→ banana-chatgpt-import).
+  Does NOT trigger for: ChatGPT/Claude web app exports.
 ---
 
 # banana-claude-codex-import

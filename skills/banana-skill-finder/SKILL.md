@@ -107,7 +107,7 @@ Format recommendations as:
 I found [N] skill(s) that could help:
 
 **1. [Skill Name]** - [One-line description]
-   Source: [SkillsMP/GitHub/Vercel]
+   Source: [SkillsMP / skills.sh / GitHub]
    Repository: [owner/repo]
    Why relevant: [Brief explanation]
    Install: `npx skills add [owner]/[repo]`
