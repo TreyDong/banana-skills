@@ -78,7 +78,7 @@ const buttonVariants = cva(
 </div>
 ```
 
-- 组件内的布局间距优先用 `gap-*` 与 padding 类；确需 margin 时说明用途并用间距 token（原文是"避免改动元素 margin"，不是一律禁止）。
+- 组件内的布局间距优先用 `gap-*` 与 padding 类；确需 margin 时说明用途并用间距 token。
 - 文本溢出用 `text-ellipsis`。
 - 少写临时 CSS，改用既有全局工具类。
 - 禁止任意值类名（`p-[13px]`、`text-[#333]`），例外要登记。

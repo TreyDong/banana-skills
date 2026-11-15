@@ -5,7 +5,7 @@ description: "Banana 设计系统：界面 token 规范、组件写法、交互�
 
 # Banana Design
 
-从 18 个高星开源项目（lobehub、open-webui、dify、langflow、cline、Roo-Code、continue、opencode、bolt.diy、dyad、vibe-kanban、jan、UI-TARS、assistant-ui、CopilotKit、tambo、OpenHands、Flowise）的源码与规范文件里蒸馏出的一套界面规则。
+一套界面与制品规则，蒸馏自 18 个高星开源项目的源码与规范文件；仓库名单与逐条出处见 `references/sources.md`。
 
 细则不在这里，按需读 `references/`。
 
@@ -110,7 +110,7 @@ description: "Banana 设计系统：界面 token 规范、组件写法、交互�
 - 幻灯片、大屏等其他制品的画布、字号与专项禁则见 `references/artifacts.md`。
 - 交付前用真实浏览器截图看一眼，别凭代码想象效果。
 
-**补充规则**（来自治理底稿，容易被忽略）
+**补充规则**（容易被忽略）
 - 改某个目录的代码前，先读那个目录适用的嵌套规则文件。
 - 改公开主题 token 后，验证明暗默认主题与自定义主题的回退路径都还能用。
 - 有多个异步阶段的功能，用一个可辨识联合体表达阶段，不用多个布尔量或可空字段拼状态。
@@ -168,6 +168,5 @@ description: "Banana 设计系统：界面 token 规范、组件写法、交互�
 | `references/ai-workflow.md` | 约束 AI 生成 UI 的流程、禁止项、检查命令 | 派 UI 任务、评审前 |
 | `references/artifacts.md` | 制品类型与场景策略：定目标流程、幻灯片生产参数、按制品换的验收 | 定制品、做幻灯片或非界面制品前 |
 | `references/sources.md` | 每条规则的来源仓库与行号 | 需要核对出处时 |
-| `references/distilled/` | 三份完整提炼稿 + Codex 审核报告，带原文引用 | 深挖出处时 |
 | `assets/banana-tokens.css` | token 样式表（Tailwind v4 与原生 CSS 两种用法） | 接进项目时 |
 | `assets/banana-report.css` | 长文排版层：封面、数字条、章节编号、图示组件 | 做报告类长文时 |
