@@ -1,0 +1,296 @@
+/* Banana Design · token 样式表
+ *
+ * 两种用法：
+ * 1. Tailwind v4 —— 在入口样式里 @import "tailwindcss"; 后 @import 本文件；
+ *    @theme inline 会把语义 token 映射成工具类（bg-background、text-muted-foreground 等）。
+ * 2. 原生 CSS —— 直接 @import 本文件，用 var(--background) 等变量。
+ *
+ * 规则：语义层用别名指向原始层，换肤只改原始层，组件类名不动。
+ */
+
+/* ---------- 原始层：明色 ---------- */
+:root {
+  color-scheme: light;
+
+  /* 中性色：一条 oklch 色调，只靠明度分档 */
+  --n-0:   oklch(1 0 0);
+  --n-50:  oklch(0.985 0 0);
+  --n-100: oklch(0.967 0 0);
+  --n-200: oklch(0.922 0 0);
+  --n-300: oklch(0.87 0 0);
+  --n-400: oklch(0.708 0 0);
+  --n-500: oklch(0.556 0 0);
+  --n-600: oklch(0.45 0 0);
+  --n-700: oklch(0.37 0 0);
+  --n-800: oklch(0.28 0 0);
+  --n-900: oklch(0.21 0 0);
+  --n-950: oklch(0.145 0 0);
+
+  /* 品牌与状态 */
+  --brand-50:  oklch(0.97 0.02 260);
+  --brand-100: oklch(0.93 0.04 260);
+  --brand-500: oklch(0.62 0.16 260);
+  --brand-600: oklch(0.55 0.17 260);
+  --brand-700: oklch(0.47 0.15 260);
+
+  --raw-success-bg:     oklch(0.96 0.04 155);
+  --raw-success-fg:     oklch(0.45 0.13 155);
+  --raw-success-border: oklch(0.85 0.08 155);
+  --raw-warning-bg:     oklch(0.97 0.05 85);
+  --raw-warning-fg:     oklch(0.48 0.12 70);
+  --raw-warning-border: oklch(0.87 0.09 80);
+  --raw-danger-bg:      oklch(0.96 0.03 25);
+  --raw-danger-fg:      oklch(0.53 0.2 25);
+  --raw-danger-border:  oklch(0.87 0.07 25);
+  --raw-info-bg:        oklch(0.96 0.02 250);
+  --raw-info-fg:        oklch(0.48 0.12 250);
+  --raw-info-border:    oklch(0.87 0.05 250);
+
+  /* 阴影：三档，按透明度阶梯组合 */
+  --shadow-1: rgb(9 9 11 / 0.03);
+  --shadow-2: rgb(9 9 11 / 0.05);
+  --shadow-5: rgb(9 9 11 / 0.10);
+  --elevation-raised:   0 2px 4px var(--shadow-1), 0 1px 2px -1px var(--shadow-2);
+  --elevation-floating: 0 8px 16px var(--shadow-2);
+  --elevation-overlay:  0 16px 32px var(--shadow-5);
+
+  /* 层级 */
+  --layer-panel: 40;
+  --layer-floating: 60;
+  --layer-modal: 80;
+  --layer-modal-floating: 90;
+  --layer-toast: 100;
+}
+
+/* ---------- 原始层：暗色 ---------- */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --n-0:   oklch(0.145 0 0);
+  --n-50:  oklch(0.175 0 0);
+  --n-100: oklch(0.205 0 0);
+  --n-200: oklch(0.269 0 0);
+  --n-300: oklch(0.33 0 0);
+  --n-400: oklch(0.45 0 0);
+  --n-500: oklch(0.556 0 0);
+  --n-600: oklch(0.65 0 0);
+  --n-700: oklch(0.75 0 0);
+  --n-800: oklch(0.85 0 0);
+  --n-900: oklch(0.93 0 0);
+  --n-950: oklch(0.985 0 0);
+
+  --brand-50:  oklch(0.28 0.07 260);
+  --brand-100: oklch(0.34 0.09 260);
+  --brand-500: oklch(0.7 0.15 260);
+  --brand-600: oklch(0.76 0.13 260);
+  --brand-700: oklch(0.82 0.1 260);
+
+  --raw-success-bg:     oklch(0.28 0.05 155);
+  --raw-success-fg:     oklch(0.8 0.14 155);
+  --raw-success-border: oklch(0.4 0.08 155);
+  --raw-warning-bg:     oklch(0.3 0.06 85);
+  --raw-warning-fg:     oklch(0.85 0.13 85);
+  --raw-warning-border: oklch(0.42 0.09 80);
+  --raw-danger-bg:      oklch(0.28 0.07 25);
+  --raw-danger-fg:      oklch(0.78 0.15 25);
+  --raw-danger-border:  oklch(0.42 0.1 25);
+  --raw-info-bg:        oklch(0.28 0.05 250);
+  --raw-info-fg:        oklch(0.8 0.1 250);
+  --raw-info-border:    oklch(0.4 0.07 250);
+
+  --shadow-1: rgb(0 0 0 / 0.30);
+  --shadow-2: rgb(0 0 0 / 0.40);
+  --shadow-5: rgb(0 0 0 / 0.55);
+}
+
+/* ---------- 语义层：明暗共用同一批名字 ---------- */
+:root {
+  --background: var(--n-0);
+  --foreground: var(--n-950);
+
+  --card: var(--n-0);
+  --card-foreground: var(--n-950);
+  --popover: var(--n-0);
+  --popover-foreground: var(--n-950);
+
+  --primary: var(--n-900);
+  --primary-foreground: var(--n-0);
+  --secondary: var(--n-100);
+  --secondary-foreground: var(--n-900);
+  --muted: var(--n-100);
+  --muted-foreground: var(--n-500);
+  --accent: var(--n-100);
+  --accent-foreground: var(--n-900);
+
+  --brand: var(--brand-600);
+  /* 品牌底色上的文字色：浅色主题品牌底是深蓝，用白字；暗色主题品牌底变亮蓝，用深字 */
+  --brand-foreground: oklch(0.985 0 0);
+  --link: var(--brand-600);
+
+  --destructive: var(--danger-fg);
+  --destructive-foreground: var(--n-0);
+
+  --success-bg: var(--raw-success-bg);
+  --success-fg: var(--raw-success-fg);
+  --success-border: var(--raw-success-border);
+  --warning-bg: var(--raw-warning-bg);
+  --warning-fg: var(--raw-warning-fg);
+  --warning-border: var(--raw-warning-border);
+  --danger-bg: var(--raw-danger-bg);
+  --danger-fg: var(--raw-danger-fg);
+  --danger-border: var(--raw-danger-border);
+  --info-bg: var(--raw-info-bg);
+  --info-fg: var(--raw-info-fg);
+  --info-border: var(--raw-info-border);
+
+  --border: var(--n-200);
+  --border-subtle: color-mix(in srgb, var(--n-200) 60%, transparent);
+  --input: var(--n-300);
+  --ring: var(--brand-600);
+  --code-bg: var(--n-100);
+
+  /* 圆角：基准 0.625rem，派生 6 / 8 / 10 / 14
+     用 --bd- 前缀，避免和 Tailwind @theme 的 --radius-* 命名空间自引用 */
+  --bd-radius-xs: 4px;
+  --bd-radius-sm: 6px;
+  --bd-radius-md: 8px;
+  --bd-radius-lg: 0.625rem;
+  --bd-radius-xl: 14px;
+  --bd-radius-pill: 9999px;
+  --bd-radius-none: 0px;
+
+  /* 字号：12 / 14 / 16 / 20 / 24 / 32，没有 13px */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-code: 0.8125rem;   /* 13px */
+  --line-height-code: 1.6;
+
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+
+  --font-family-sans: -apple-system, "SF Pro Text", BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  --font-family-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 280ms;
+
+  --container-prose: 768px;
+  --container-chat: 880px;
+  --header-height: 56px;
+  --sidebar-width: 240px;
+
+  /* 封面与品牌标记 */
+  --cover-bg: oklch(0.19 0.018 265);
+  --cover-fg: oklch(0.985 0 0);
+  --cover-dim: oklch(0.80 0.012 265);
+  --cover-line: oklch(1 0 0 / 0.14);
+  --brand-border: color-mix(in srgb, var(--brand) 45%, transparent);
+}
+
+[data-theme="dark"] {
+  --brand: var(--brand-500);
+  --brand-foreground: oklch(0.19 0.02 265);
+
+  --cover-bg: oklch(0.115 0.012 265);
+  --cover-fg: oklch(0.985 0 0);
+  --cover-dim: oklch(0.74 0.012 265);
+  --cover-line: oklch(1 0 0 / 0.12);
+}
+
+/* ---------- Tailwind v4：把语义 token 映射成工具类 ---------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-link: var(--link);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success-fg);
+  --color-success-bg: var(--success-bg);
+  --color-success-border: var(--success-border);
+  --color-warning: var(--warning-fg);
+  --color-warning-bg: var(--warning-bg);
+  --color-warning-border: var(--warning-border);
+  --color-danger: var(--danger-fg);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-border: var(--danger-border);
+  --color-info: var(--info-fg);
+  --color-info-bg: var(--info-bg);
+  --color-info-border: var(--info-border);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-code: var(--code-bg);
+
+  --radius-xs: var(--bd-radius-xs);
+  --radius-sm: var(--bd-radius-sm);
+  --radius-md: var(--bd-radius-md);
+  --radius-lg: var(--bd-radius-lg);
+  --radius-xl: var(--bd-radius-xl);
+
+  --text-xs: var(--font-size-xs);
+  --text-sm: var(--font-size-sm);
+  --text-base: var(--font-size-base);
+  --text-lg: var(--font-size-lg);
+  --text-xl: var(--font-size-xl);
+  --text-2xl: var(--font-size-2xl);
+  --text-code: var(--font-size-code);
+
+  --font-sans: var(--font-family-sans);
+  --font-mono: var(--font-family-mono);
+
+  --shadow-raised: var(--elevation-raised);
+  --shadow-floating: var(--elevation-floating);
+  --shadow-overlay: var(--elevation-overlay);
+}
+
+/* ---------- 基础排版 ---------- */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+/* ---------- 焦点环：全局统一，禁止移除 ---------- */
+:where(button, a, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ---------- 减弱动效 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

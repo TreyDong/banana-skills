@@ -51,6 +51,27 @@ npx skills add TreyDong/banana-skills/skills/banana-sync-to-notion
 - 上传文件到 Notion
 - 迁移文档到 Notion
 
+### 4. banana-design（中文文档）
+
+界面与制品设计规范：token、组件写法、交互与可访问性规则，约束 AI 生成 UI 的流程与自检清单，并按制品类型（界面 / 幻灯片 / 长文 / 大屏 / 营销页 / 邮件）与场景（教育 / 医疗 / 政务等）先定设计目标再选策略。从 18 个高星开源 Agent 项目的源码与规范文件蒸馏而来，每条规则可溯源。
+
+**安装：**
+```bash
+npx skills add TreyDong/banana-skills/skills/banana-design
+```
+
+**功能特性：**
+- 语义 token 规范与可接入的 CSS 样式表（`assets/banana-tokens.css`）
+- 组件与样式写法，含正误代码对照
+- 交互、状态、可访问性与文案规则
+- 约束 AI 生成 UI 的流程、禁止项与可执行检查
+- 制品类型 × 场景的设计目标与策略表（含幻灯片生产参数）
+
+**触发时机：**
+- 写或改任何界面代码
+- 做幻灯片、长文报告、数据大屏等制品
+- 评审界面、给 AI 派 UI 任务之前
+
 ## 🚀 快速开始
 
 ### 安装单个技能
@@ -71,6 +92,7 @@ npx skills add TreyDong/banana-skills
 
 - **banana-skill-finder**: [skills/banana-skill-finder/SKILL.md](skills/banana-skill-finder/SKILL.md)
 - **banana-sync-to-notion**: [skills/banana-sync-to-notion/SKILL.md](skills/banana-sync-to-notion/SKILL.md)
+- **banana-design**（中文）: [skills/banana-design/SKILL.md](skills/banana-design/SKILL.md)
 
 ## 🛠️ 配置要求
 
@@ -128,7 +150,7 @@ MIT License - 详见 [LICENSE](LICENSE)
 
 ## 📧 联系方式
 
-Created by [Your Name]
+Created by [Trey (Banana)](https://github.com/TreyDong)
 
 ---
 

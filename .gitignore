@@ -49,3 +49,6 @@ temp/
 # Files directory (user data)
 Files/
 !Files/.gitkeep
+
+# banana-design: verbatim extraction archive stays local only
+skills/banana-design/references/distilled/

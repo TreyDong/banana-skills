@@ -69,6 +69,27 @@ npx skills add TreyDong/banana-skills/skills/claude-codex-import
 - Wanting to rebuild memory from past coding agent sessions
 - Publishing a skill based on previous agent sessions
 
+### 4. banana-design (documented in Chinese)
+
+UI and artifact design system: semantic tokens, component patterns, interaction and accessibility rules, plus a workflow and checklists for constraining AI-generated UI. Picks the design goal per artifact type (app UI / slides / long-form report / dashboard / landing page / email) and scenario (education / healthcare / government, …) before applying tactics. Distilled from 18 popular open-source agent projects, with per-rule provenance.
+
+**Installation:**
+```bash
+npx skills add TreyDong/banana-skills/skills/banana-design
+```
+
+**Features:**
+- Semantic token spec with a ready-to-use CSS stylesheet (`assets/banana-tokens.css`)
+- Component and styling patterns with correct/incorrect code pairs
+- Interaction, state, accessibility and copywriting rules
+- Workflow, prohibited patterns and executable checks for AI-generated UI
+- Artifact type × scenario goal-setting tables, including slide-deck production parameters
+
+**Triggers automatically when:**
+- Writing or modifying any UI code
+- Producing slide decks, long-form reports or dashboards
+- Reviewing UI or assigning UI tasks to AI agents
+
 ## 🚀 Quick Start
 
 ### Install a Single Skill
@@ -89,6 +110,7 @@ Each skill includes detailed documentation in its `SKILL.md` file:
 
 - **banana-skill-finder**: [skills/banana-skill-finder/SKILL.md](skills/banana-skill-finder/SKILL.md)
 - **banana-sync-to-notion**: [skills/banana-sync-to-notion/SKILL.md](skills/banana-sync-to-notion/SKILL.md)
+- **banana-design** (Chinese): [skills/banana-design/SKILL.md](skills/banana-design/SKILL.md)
 - **claude-codex-import**: [skills/claude-codex-import/SKILL.md](skills/claude-codex-import/SKILL.md)
 
 ## 🛠️ Setup Requirements
@@ -147,7 +169,7 @@ Contributions are welcome! Feel free to:
 
 ## 📧 Contact
 
-Created by [Your Name]
+Created by [Trey (Banana)](https://github.com/TreyDong)
 
 ---
 

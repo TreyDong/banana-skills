@@ -40,14 +40,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Puppeteer dependency (was only used for Feishu)
 - Chinese language documentation from skill files
 
+## [1.1.0] - 2026-11-15
+
+### Added
+
+#### banana-design (v1.0.0)
+- UI and artifact design system distilled from 18 popular open-source agent projects (lobehub, dify, langflow, opencode, …), with per-rule provenance in `references/sources.md`
+- Semantic token spec + CSS stylesheet (`assets/banana-tokens.css`) and long-form report layer (`assets/banana-report.css`)
+- Component patterns, interaction/state rules, accessibility and copywriting rules
+- Workflow for constraining AI-generated UI: task briefing, prohibited patterns, executable checks, review grading (P0–P3)
+- Artifact type × scenario strategy: goal-setting flow, per-artifact tactics (app UI / slides / long-form / dashboard / landing page / email), domain adjustments (education / healthcare / government / finance / industrial), slide-deck production parameters (1280×720 canvas → PDF 960×540pt → PPTX) and per-artifact acceptance checks
+- Documentation in Chinese
+
 ## [Unreleased]
 
 ### Planned
-- Add more skills to the collection
 - Enhance skill-finder with local skill recommendations
 - Add image upload support for banana-sync-to-notion
 - Create skill templates for common use cases
 
 ---
 
-[1.0.0]: https://github.com/your-username/banana-skills/releases/tag/v1.0.0
+[1.1.0]: https://github.com/TreyDong/banana-skills/releases/tag/v1.1.0
+[1.0.0]: https://github.com/TreyDong/banana-skills/releases/tag/v1.0.0
